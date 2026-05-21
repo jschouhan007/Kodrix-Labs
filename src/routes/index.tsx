@@ -5,13 +5,13 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Privacy Policy — [YOUR APP NAME]" },
+      { title: "Privacy Policy — Pagify" },
       {
         name: "description",
         content:
-          "Privacy Policy for [YOUR APP NAME], compliant with Google Play, Google AdMob, GDPR, CCPA and COPPA requirements.",
+          "Privacy Policy for Pagify by Kodrix Labs, compliant with Google Play, Google AdMob, GDPR, CCPA and COPPA requirements.",
       },
-      { property: "og:title", content: "Privacy Policy — [YOUR APP NAME]" },
+      { property: "og:title", content: "Privacy Policy — Pagify" },
       { property: "og:description", content: "Our commitment to your privacy and data protection." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -20,10 +20,10 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const APP_NAME = "[YOUR APP NAME]";
-const COMPANY = "[YOUR COMPANY / DEVELOPER NAME]";
-const EMAIL = "[YOUR CONTACT EMAIL]";
-const WEBSITE = "[YOUR WEBSITE URL]";
+const APP_NAME = "Pagify";
+const COMPANY = "Kodrix Labs";
+const EMAIL = "kodrixlabs007@gmail.com";
+const WEBSITE = "";
 const EFFECTIVE_DATE = "May 21, 2026";
 
 const sections = [
