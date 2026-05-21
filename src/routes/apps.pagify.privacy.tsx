@@ -1,5 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Shield, Mail, Database, Cookie, Baby, Globe, RefreshCw, Lock, FileText, ChevronRight } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Shield, Mail, Database, Cookie, Baby, Globe, RefreshCw, Lock, FileText, ChevronRight, ArrowLeft } from "lucide-react";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 export const Route = createFileRoute("/apps/pagify/privacy")({
   component: Index,
