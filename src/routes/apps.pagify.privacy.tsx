@@ -46,6 +46,7 @@ const sections = [
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SiteHeader />
       {/* Hero */}
       <header
         className="relative overflow-hidden border-b border-border"
@@ -53,7 +54,15 @@ function Index() {
       >
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]" />
         <div className="relative mx-auto max-w-5xl px-6 py-20 sm:py-28">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-xs font-medium text-primary-foreground backdrop-blur">
+          <Link
+            to="/apps/$slug"
+            params={{ slug: "pagify" }}
+            className="inline-flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Pagify
+          </Link>
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-xs font-medium text-primary-foreground backdrop-blur">
             <Shield className="h-3.5 w-3.5" />
             Legal · Privacy
           </div>
@@ -69,6 +78,7 @@ function Index() {
           </p>
         </div>
       </header>
+
 
       <div className="mx-auto max-w-6xl px-6 py-12 lg:py-16">
         <div className="grid gap-12 lg:grid-cols-[240px_1fr]">
