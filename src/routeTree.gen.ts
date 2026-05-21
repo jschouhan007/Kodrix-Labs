@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppsSlugRouteImport } from './routes/apps.$slug'
+import { Route as AppsPagifyPrivacyRouteImport } from './routes/apps.pagify.privacy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const AppsSlugRoute = AppsSlugRouteImport.update({
   path: '/apps/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppsPagifyPrivacyRoute = AppsPagifyPrivacyRouteImport.update({
+  id: '/apps/pagify/privacy',
+  path: '/apps/pagify/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apps/$slug': typeof AppsSlugRoute
+  '/apps/pagify/privacy': typeof AppsPagifyPrivacyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apps/$slug': typeof AppsSlugRoute
+  '/apps/pagify/privacy': typeof AppsPagifyPrivacyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/apps/$slug': typeof AppsSlugRoute
+  '/apps/pagify/privacy': typeof AppsPagifyPrivacyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/apps/$slug'
+  fullPaths: '/' | '/apps/$slug' | '/apps/pagify/privacy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/apps/$slug'
-  id: '__root__' | '/' | '/apps/$slug'
+  to: '/' | '/apps/$slug' | '/apps/pagify/privacy'
+  id: '__root__' | '/' | '/apps/$slug' | '/apps/pagify/privacy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppsSlugRoute: typeof AppsSlugRoute
+  AppsPagifyPrivacyRoute: typeof AppsPagifyPrivacyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,13 +75,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apps/pagify/privacy': {
+      id: '/apps/pagify/privacy'
+      path: '/apps/pagify/privacy'
+      fullPath: '/apps/pagify/privacy'
+      preLoaderRoute: typeof AppsPagifyPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppsSlugRoute: AppsSlugRoute,
+  AppsPagifyPrivacyRoute: AppsPagifyPrivacyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
