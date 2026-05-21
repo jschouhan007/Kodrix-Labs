@@ -1,308 +1,321 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Shield, Mail, Database, Cookie, Baby, Globe, RefreshCw, Lock, FileText, ChevronRight } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  ArrowUpRight,
+  BookOpen,
+  Shield,
+  Sparkles,
+  Smartphone,
+  Zap,
+  Lock,
+  Mail,
+  Hexagon,
+} from "lucide-react";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: Home,
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Pagify" },
+      { title: "Kodrix Labs — Independent App Studio" },
       {
         name: "description",
         content:
-          "Privacy Policy for Pagify by Kodrix Labs, compliant with Google Play, Google AdMob, GDPR, CCPA and COPPA requirements.",
+          "Kodrix Labs is an independent studio building useful, privacy-respecting mobile apps. Explore our apps including Pagify and their privacy policies.",
       },
-      { property: "og:title", content: "Privacy Policy — Pagify" },
-      { property: "og:description", content: "Our commitment to your privacy and data protection." },
+      { property: "og:title", content: "Kodrix Labs — Independent App Studio" },
+      {
+        property: "og:description",
+        content: "Useful, privacy-respecting apps. Meet our products and policies.",
+      },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
 });
 
-const APP_NAME = "Pagify";
-const COMPANY = "Kodrix Labs";
-const EMAIL = "kodrixlabs007@gmail.com";
-const WEBSITE = "";
-const EFFECTIVE_DATE = "May 21, 2026";
+type App = {
+  slug: "pagify";
+  name: string;
+  tagline: string;
+  description: string;
+  status: "Live" | "In development" | "Beta";
+  category: string;
+  icon: typeof BookOpen;
+  accent: string;
+};
 
-const sections = [
-  { id: "introduction", label: "Introduction", icon: FileText },
-  { id: "information-we-collect", label: "Information We Collect", icon: Database },
-  { id: "how-we-use", label: "How We Use Information", icon: ChevronRight },
-  { id: "admob", label: "Google AdMob & Advertising", icon: Globe },
-  { id: "third-party", label: "Third-Party Services", icon: Globe },
-  { id: "cookies", label: "Cookies & Tracking", icon: Cookie },
-  { id: "data-security", label: "Data Security", icon: Lock },
-  { id: "data-retention", label: "Data Retention", icon: RefreshCw },
-  { id: "childrens-privacy", label: "Children's Privacy (COPPA)", icon: Baby },
-  { id: "your-rights", label: "Your Rights (GDPR / CCPA)", icon: Shield },
-  { id: "changes", label: "Changes to This Policy", icon: RefreshCw },
-  { id: "contact", label: "Contact Us", icon: Mail },
+const APPS: App[] = [
+  {
+    slug: "pagify",
+    name: "Pagify",
+    tagline: "Read, organize, and rediscover.",
+    description:
+      "A clean, distraction-free reading and notes companion designed to make every page feel intentional.",
+    status: "Live",
+    category: "Productivity · Reading",
+    icon: BookOpen,
+    accent: "from-blue-500 to-indigo-500",
+  },
 ];
 
-function Index() {
+function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SiteHeader />
+
       {/* Hero */}
-      <header
-        className="relative overflow-hidden border-b border-border"
-        style={{ background: "var(--gradient-hero)" }}
-      >
-        <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]" />
-        <div className="relative mx-auto max-w-5xl px-6 py-20 sm:py-28">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-xs font-medium text-primary-foreground backdrop-blur">
-            <Shield className="h-3.5 w-3.5" />
-            Legal · Privacy
+      <section className="relative overflow-hidden border-b border-border">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-90"
+          style={{ background: "var(--gradient-subtle)" }}
+        />
+        <div className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full blur-3xl opacity-30"
+          style={{ background: "var(--gradient-hero)" }}
+        />
+        <div className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full blur-3xl opacity-20"
+          style={{ background: "var(--gradient-hero)" }}
+        />
+
+        <div className="relative mx-auto max-w-6xl px-6 py-20 sm:py-28 lg:py-32">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-xs font-medium text-foreground shadow-[var(--shadow-soft)] backdrop-blur">
+            <Sparkles className="h-3.5 w-3.5 text-primary" />
+            Independent app studio
           </div>
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-primary-foreground sm:text-6xl">
-            Privacy Policy
+
+          <h1 className="mt-6 max-w-3xl text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+            We build apps people{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: "var(--gradient-hero)" }}
+            >
+              actually love using.
+            </span>
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-primary-foreground/85">
-            How {APP_NAME} collects, uses, and protects your information — written to comply with
-            Google Play, Google AdMob, GDPR, CCPA, and COPPA.
+
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            Kodrix Labs is a small team obsessed with clean design, fast performance, and respect
+            for your data. Every product we ship is built around a single rule —{" "}
+            <span className="font-medium text-foreground">your privacy is not the product</span>.
           </p>
-          <p className="mt-6 text-sm text-primary-foreground/70">
-            Effective date: <span className="font-medium text-primary-foreground">{EFFECTIVE_DATE}</span>
-          </p>
-        </div>
-      </header>
 
-      <div className="mx-auto max-w-6xl px-6 py-12 lg:py-16">
-        <div className="grid gap-12 lg:grid-cols-[240px_1fr]">
-          {/* TOC */}
-          <aside className="lg:sticky lg:top-8 lg:self-start">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              On this page
-            </p>
-            <nav className="flex flex-col gap-1">
-              {sections.map((s) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="group flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                >
-                  <s.icon className="h-4 w-4 text-primary/70 transition-colors group-hover:text-primary" />
-                  <span>{s.label}</span>
-                </a>
-              ))}
-            </nav>
-          </aside>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href="#apps"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-elegant)] transition-transform hover:-translate-y-0.5"
+              style={{ background: "var(--gradient-hero)" }}
+            >
+              Explore our apps
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#about"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+            >
+              About the studio
+            </a>
+          </div>
 
-          {/* Content */}
-          <article className="prose-policy">
-            <Section id="introduction" icon={FileText} title="1. Introduction">
-              <p>
-                {COMPANY} ("we", "our", or "us") operates the mobile application {APP_NAME}
-                (the "App"). This Privacy Policy explains what information we collect when you use
-                our App, how we use it, and the choices you have. By downloading or using the App,
-                you agree to the practices described here.
-              </p>
-            </Section>
-
-            <Section id="information-we-collect" icon={Database} title="2. Information We Collect">
-              <h3>2.1 Information you provide</h3>
-              <p>
-                We may collect information you voluntarily provide, such as your name, email address,
-                or any content you submit through forms within the App.
-              </p>
-              <h3>2.2 Information collected automatically</h3>
-              <ul>
-                <li><strong>Device data:</strong> model, OS version, language, country, and unique device identifiers.</li>
-                <li><strong>Usage data:</strong> screens viewed, features used, time spent, crash logs.</li>
-                <li><strong>Advertising identifiers:</strong> Google Advertising ID (AAID) for ad personalization and frequency capping.</li>
-                <li><strong>Approximate location:</strong> derived from IP address (we do not collect precise GPS location unless explicitly enabled).</li>
-                <li><strong>Network info:</strong> IP address, mobile network, connection type.</li>
-              </ul>
-            </Section>
-
-            <Section id="how-we-use" icon={ChevronRight} title="3. How We Use Your Information">
-              <ul>
-                <li>To provide, maintain, and improve App functionality.</li>
-                <li>To personalize content and serve relevant advertisements.</li>
-                <li>To analyze usage and diagnose technical issues.</li>
-                <li>To detect, prevent, and address fraud or abuse.</li>
-                <li>To comply with legal obligations.</li>
-              </ul>
-            </Section>
-
-            <Section id="admob" icon={Globe} title="4. Google AdMob & Advertising">
-              <p>
-                Our App uses <strong>Google AdMob</strong>, a mobile advertising service provided by
-                Google LLC, to display advertisements. AdMob may collect and process data including
-                your Advertising ID, IP address, device information, and interaction with ads to
-                deliver personalized advertising.
-              </p>
-              <p>
-                For users in the European Economic Area (EEA), United Kingdom, and Switzerland, we
-                use the <strong>Google-certified Consent Management Platform (CMP)</strong> to obtain
-                consent for personalized ads in accordance with the EU User Consent Policy and IAB
-                TCF v2.2.
-              </p>
-              <p>You can control ad personalization at any time:</p>
-              <ul>
-                <li><strong>Android:</strong> Settings → Google → Ads → "Delete advertising ID" or "Opt out of Ads Personalization".</li>
-                <li>Learn more at{" "}
-                  <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">
-                    Google Ads & Privacy Policy
-                  </a>.
-                </li>
-              </ul>
-            </Section>
-
-            <Section id="third-party" icon={Globe} title="5. Third-Party Services">
-              <p>
-                We use trusted third-party providers that may collect information used to identify
-                you. Each is bound by their own privacy policy:
-              </p>
-              <ul>
-                <li>
-                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-                    Google Play Services
-                  </a>
-                </li>
-                <li>
-                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-                    Google AdMob
-                  </a>
-                </li>
-                <li>
-                  <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">
-                    Firebase Analytics & Crashlytics
-                  </a>
-                </li>
-                <li>
-                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-                    Google Sign-In
-                  </a>{" "}
-                  (if applicable)
-                </li>
-              </ul>
-            </Section>
-
-            <Section id="cookies" icon={Cookie} title="6. Cookies & Similar Technologies">
-              <p>
-                The App and our advertising partners may use cookies, web beacons, SDKs, and similar
-                tracking technologies to collect information about your usage and deliver targeted
-                content and ads.
-              </p>
-            </Section>
-
-            <Section id="data-security" icon={Lock} title="7. Data Security">
-              <p>
-                We use industry-standard administrative, technical, and physical safeguards to
-                protect your information. Data in transit is encrypted using TLS. However, no method
-                of transmission over the internet is 100% secure, and we cannot guarantee absolute
-                security.
-              </p>
-            </Section>
-
-            <Section id="data-retention" icon={RefreshCw} title="8. Data Retention">
-              <p>
-                We retain personal information only for as long as necessary to fulfill the purposes
-                outlined in this Privacy Policy, unless a longer retention period is required by law.
-                You may request deletion of your data at any time by contacting us.
-              </p>
-            </Section>
-
-            <Section id="childrens-privacy" icon={Baby} title="9. Children's Privacy (COPPA)">
-              <p>
-                Our App is not directed to children under the age of 13 (or the equivalent minimum
-                age in the relevant jurisdiction). We do not knowingly collect personal information
-                from children. If you believe a child has provided us with personal information,
-                please contact us and we will delete it promptly.
-              </p>
-            </Section>
-
-            <Section id="your-rights" icon={Shield} title="10. Your Rights (GDPR & CCPA)">
-              <p>Depending on your location, you may have the right to:</p>
-              <ul>
-                <li>Access, correct, or delete personal data we hold about you.</li>
-                <li>Object to or restrict certain processing of your data.</li>
-                <li>Request portability of your data.</li>
-                <li>Withdraw consent at any time.</li>
-                <li>Opt out of the "sale" or "sharing" of personal information (CCPA).</li>
-                <li>Lodge a complaint with your local data protection authority.</li>
-              </ul>
-              <p>To exercise any of these rights, email us at{" "}
-                <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
-              </p>
-            </Section>
-
-            <Section id="changes" icon={RefreshCw} title="11. Changes to This Policy">
-              <p>
-                We may update this Privacy Policy from time to time. The "Effective date" at the top
-                indicates when it was last revised. Material changes will be communicated through the
-                App or via the contact information you provided.
-              </p>
-            </Section>
-
-            <Section id="contact" icon={Mail} title="12. Contact Us">
-              <p>
-                If you have questions or concerns about this Privacy Policy or our data practices,
-                please contact us:
-              </p>
-              <div className="not-prose mt-4 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
-                <dl className="grid gap-3 text-sm sm:grid-cols-2">
-                  <div>
-                    <dt className="font-semibold text-muted-foreground">Developer</dt>
-                    <dd className="mt-1 text-foreground">{COMPANY}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-semibold text-muted-foreground">App</dt>
-                    <dd className="mt-1 text-foreground">{APP_NAME}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-semibold text-muted-foreground">Email</dt>
-                    <dd className="mt-1">
-                      <a className="text-primary hover:underline" href={`mailto:${EMAIL}`}>
-                        {EMAIL}
-                      </a>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="font-semibold text-muted-foreground">Website</dt>
-                    <dd className="mt-1 text-foreground">{WEBSITE}</dd>
-                  </div>
-                </dl>
+          {/* Stat strip */}
+          <div className="mt-16 grid gap-4 sm:grid-cols-3">
+            {[
+              { value: "100%", label: "Compliance-first" },
+              { value: "0", label: "Data sold, ever" },
+              { value: "1+", label: "Apps shipped" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="rounded-2xl border border-border bg-card/70 p-5 shadow-[var(--shadow-soft)] backdrop-blur"
+              >
+                <p className="text-3xl font-bold tracking-tight text-foreground">{s.value}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
               </div>
-            </Section>
-          </article>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      <footer className="border-t border-border bg-secondary/40">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} {COMPANY}. All rights reserved.</p>
-          <p>Last updated: {EFFECTIVE_DATE}</p>
+      {/* About */}
+      <section id="about" className="border-b border-border">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 lg:grid-cols-[1fr_1.3fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              The studio
+            </p>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Small team. High standards. Useful software.
+            </h2>
+          </div>
+          <div className="space-y-5 text-base leading-relaxed text-muted-foreground">
+            <p>
+              Kodrix Labs is an indie mobile studio focused on shipping focused, polished Android
+              apps. We don't chase trends — we build products that solve a real problem and stay
+              out of the way.
+            </p>
+            <p>
+              Every app we publish is paired with a transparent, jurisdiction-aware privacy policy
+              covering Google Play, AdMob, GDPR, CCPA, and COPPA so you always know exactly what
+              data is collected and why.
+            </p>
+          </div>
         </div>
-      </footer>
+      </section>
+
+      {/* Principles */}
+      <section className="border-b border-border bg-secondary/30">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              How we work
+            </p>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Three rules we don't break.
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                icon: Lock,
+                title: "Privacy by default",
+                body: "We collect the minimum data needed to make the app work. No dark patterns, no surprise tracking.",
+              },
+              {
+                icon: Zap,
+                title: "Fast, always",
+                body: "Snappy launch times, lean APKs, and battery-friendly background behavior on every release.",
+              },
+              {
+                icon: Smartphone,
+                title: "Made for real devices",
+                body: "Tested across Android versions, screen sizes, and connection speeds — not just flagships.",
+              },
+            ].map((p) => (
+              <div
+                key={p.title}
+                className="group rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]"
+              >
+                <div
+                  className="flex h-11 w-11 items-center justify-center rounded-xl text-primary-foreground"
+                  style={{ background: "var(--gradient-hero)" }}
+                >
+                  <p.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 text-lg font-semibold text-foreground">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Apps */}
+      <section id="apps" className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                Our apps
+              </p>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                Apps by Kodrix Labs
+              </h2>
+              <p className="mt-3 text-muted-foreground">
+                Tap any card to view app details and its complete privacy policy.
+              </p>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              {APPS.length} {APPS.length === 1 ? "app" : "apps"} · more on the way
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {APPS.map((app) => (
+              <AppCard key={app.slug} app={app} />
+            ))}
+
+            {/* Coming-soon card */}
+            <div className="flex min-h-[260px] flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-card/40 p-6 text-center">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-muted-foreground">
+                <Hexagon className="h-5 w-5" />
+              </div>
+              <p className="mt-4 text-sm font-semibold text-foreground">More apps coming soon</p>
+              <p className="mt-1 max-w-[220px] text-xs text-muted-foreground">
+                We're cooking up the next one. Watch this space.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div
+            className="relative overflow-hidden rounded-3xl border border-border p-10 text-primary-foreground shadow-[var(--shadow-elegant)] sm:p-14"
+            style={{ background: "var(--gradient-hero)" }}
+          >
+            <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]" />
+            <div className="relative grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-3 py-1 text-xs font-medium backdrop-blur">
+                  <Shield className="h-3.5 w-3.5" />
+                  Privacy · Support · Partnership
+                </div>
+                <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+                  Get in touch with Kodrix Labs.
+                </h2>
+                <p className="mt-3 max-w-xl text-primary-foreground/85">
+                  Have a question about one of our apps, a data request under GDPR or CCPA, or a
+                  partnership idea? We read every email.
+                </p>
+              </div>
+              <a
+                href="mailto:kodrixlabs007@gmail.com"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-background px-6 py-3 text-sm font-semibold text-foreground shadow-lg transition-transform hover:-translate-y-0.5"
+              >
+                <Mail className="h-4 w-4" />
+                kodrixlabs007@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
     </div>
   );
 }
 
-function Section({
-  id,
-  icon: Icon,
-  title,
-  children,
-}: {
-  id: string;
-  icon: React.ComponentType<{ className?: string }>;
-  title: string;
-  children: React.ReactNode;
-}) {
+function AppCard({ app }: { app: App }) {
+  const Icon = app.icon;
   return (
-    <section id={id} className="scroll-mt-8 border-b border-border py-10 first:pt-0 last:border-b-0">
-      <div className="mb-5 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-primary">
-          <Icon className="h-5 w-5" />
+    <Link
+      to="/apps/$slug"
+      params={{ slug: app.slug }}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]"
+    >
+      <div className="flex items-start justify-between">
+        <div
+          className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${app.accent} text-white shadow-md`}
+        >
+          <Icon className="h-6 w-6" />
         </div>
-        <h2 className="text-2xl font-bold tracking-tight text-foreground">{title}</h2>
+        <span className="rounded-full border border-border bg-secondary px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+          {app.status}
+        </span>
       </div>
-      <div className="space-y-4 text-[15px] leading-relaxed text-muted-foreground [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:opacity-80 [&_h3]:mt-6 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-foreground [&_strong]:text-foreground [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
-        {children}
+
+      <h3 className="mt-6 text-xl font-bold tracking-tight text-foreground">{app.name}</h3>
+      <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+        {app.category}
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{app.description}</p>
+
+      <div className="mt-6 flex items-center justify-between border-t border-border pt-4 text-sm">
+        <span className="font-medium text-foreground">View details</span>
+        <ArrowUpRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </div>
-    </section>
+    </Link>
   );
 }
