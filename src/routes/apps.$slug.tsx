@@ -152,7 +152,7 @@ function AppPage() {
             </h2>
           </div>
           <ul className="space-y-4">
-            {app.highlights.map((h) => (
+            {app.highlights.map((h: string) => (
               <li
                 key={h}
                 className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-[var(--shadow-soft)]"
