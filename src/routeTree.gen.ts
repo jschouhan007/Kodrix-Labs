@@ -10,8 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AppsSlugRouteImport } from './routes/apps.$slug'
+import { Route as AdminNewRouteImport } from './routes/admin.new'
+import { Route as AdminIdRouteImport } from './routes/admin.$id'
 import { Route as AppsPagifyPrivacyRouteImport } from './routes/apps.pagify.privacy'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -19,15 +26,50 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 const AppsSlugRoute = AppsSlugRouteImport.update({
   id: '/apps/$slug',
   path: '/apps/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNewRoute = AdminNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminIdRoute = AdminIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminRoute,
 } as any)
 const AppsPagifyPrivacyRoute = AppsPagifyPrivacyRouteImport.update({
   id: '/apps/pagify/privacy',
@@ -37,33 +79,89 @@ const AppsPagifyPrivacyRoute = AppsPagifyPrivacyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/blog': typeof BlogRouteWithChildren
+  '/login': typeof LoginRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/$id': typeof AdminIdRoute
+  '/admin/new': typeof AdminNewRoute
   '/apps/$slug': typeof AppsSlugRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/apps/pagify/privacy': typeof AppsPagifyPrivacyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/login': typeof LoginRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/$id': typeof AdminIdRoute
+  '/admin/new': typeof AdminNewRoute
   '/apps/$slug': typeof AppsSlugRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/apps/pagify/privacy': typeof AppsPagifyPrivacyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/blog': typeof BlogRouteWithChildren
+  '/login': typeof LoginRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/$id': typeof AdminIdRoute
+  '/admin/new': typeof AdminNewRoute
   '/apps/$slug': typeof AppsSlugRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/apps/pagify/privacy': typeof AppsPagifyPrivacyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/apps/$slug' | '/apps/pagify/privacy'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/blog'
+    | '/login'
+    | '/sitemap.xml'
+    | '/admin/$id'
+    | '/admin/new'
+    | '/apps/$slug'
+    | '/blog/$slug'
+    | '/admin/'
+    | '/apps/pagify/privacy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/apps/$slug' | '/apps/pagify/privacy'
-  id: '__root__' | '/' | '/sitemap.xml' | '/apps/$slug' | '/apps/pagify/privacy'
+  to:
+    | '/'
+    | '/blog'
+    | '/login'
+    | '/sitemap.xml'
+    | '/admin/$id'
+    | '/admin/new'
+    | '/apps/$slug'
+    | '/blog/$slug'
+    | '/admin'
+    | '/apps/pagify/privacy'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/blog'
+    | '/login'
+    | '/sitemap.xml'
+    | '/admin/$id'
+    | '/admin/new'
+    | '/apps/$slug'
+    | '/blog/$slug'
+    | '/admin/'
+    | '/apps/pagify/privacy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  BlogRoute: typeof BlogRouteWithChildren
+  LoginRoute: typeof LoginRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AppsSlugRoute: typeof AppsSlugRoute
   AppsPagifyPrivacyRoute: typeof AppsPagifyPrivacyRoute
@@ -78,6 +176,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -85,12 +204,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
     '/apps/$slug': {
       id: '/apps/$slug'
       path: '/apps/$slug'
       fullPath: '/apps/$slug'
       preLoaderRoute: typeof AppsSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/admin/new': {
+      id: '/admin/new'
+      path: '/new'
+      fullPath: '/admin/new'
+      preLoaderRoute: typeof AdminNewRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/$id': {
+      id: '/admin/$id'
+      path: '/$id'
+      fullPath: '/admin/$id'
+      preLoaderRoute: typeof AdminIdRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/apps/pagify/privacy': {
       id: '/apps/pagify/privacy'
@@ -102,8 +249,35 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteChildren {
+  AdminIdRoute: typeof AdminIdRoute
+  AdminNewRoute: typeof AdminNewRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminIdRoute: AdminIdRoute,
+  AdminNewRoute: AdminNewRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  BlogRoute: BlogRouteWithChildren,
+  LoginRoute: LoginRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AppsSlugRoute: AppsSlugRoute,
   AppsPagifyPrivacyRoute: AppsPagifyPrivacyRoute,

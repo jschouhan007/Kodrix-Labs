@@ -3,7 +3,7 @@ import { createFileRoute, useNavigate, useRouter, Link } from "@tanstack/react-r
 import { useServerFn } from "@tanstack/react-start";
 import { useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, Save } from "lucide-react";
-import { upsertPost, getPostAdmin, type AdminPost } from "@/lib/blog.functions";
+import { upsertPost, type AdminPost } from "@/lib/blog.functions";
 import { renderMarkdown } from "@/lib/markdown";
 
 export type EditorMode = "new" | "edit";
