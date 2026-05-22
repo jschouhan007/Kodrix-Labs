@@ -35,6 +35,14 @@ export function SiteHeader() {
           >
             Apps
           </a>
+          <Link
+            to="/blog"
+            activeProps={{ className: "text-foreground bg-secondary" }}
+            inactiveProps={{ className: "text-muted-foreground hover:text-foreground hover:bg-secondary/60" }}
+            className="rounded-md px-3 py-2 transition-colors"
+          >
+            Blog
+          </Link>
           <a
             href="/#contact"
             className="rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground"
